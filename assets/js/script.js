@@ -51,3 +51,22 @@ window.addEventListener("scroll", function () {
     backTopBtn.classList.remove("active");
   }
 });
+
+
+
+/**
+ * background audio
+ */
+
+const backgroundAudio = document.querySelector("[data-bg-audio]");
+
+if (backgroundAudio) {
+  const startAudio = () => {
+    backgroundAudio.play().catch(() => {});
+    window.removeEventListener("click", startAudio);
+    window.removeEventListener("touchstart", startAudio);
+  };
+
+  window.addEventListener("click", startAudio, { once: true });
+  window.addEventListener("touchstart", startAudio, { once: true });
+}
