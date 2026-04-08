@@ -848,6 +848,152 @@ body {
 
 
 /*-----------------------------------*\
+  #CREATE AND MANAGE GAME
+\*-----------------------------------*/
+
+.game-management {
+  padding-block: var(--section-padding);
+  background-color: var(--eerie-black-2);
+}
+
+.game-management .section-title,
+.game-management .section-text {
+  text-align: center;
+}
+
+.game-management .section-text {
+  margin-block: 25px 60px;
+  color: var(--roman-silver);
+}
+
+.game-management-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.management-card {
+  background: linear-gradient(135deg, var(--raisin-black-2), var(--raisin-black-4));
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.4s var(--cubic-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.management-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.05), rgba(0, 188, 212, 0.05));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.management-card:hover::before {
+  opacity: 1;
+}
+
+.management-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--marigold);
+  box-shadow: 0 15px 40px rgba(255, 193, 7, 0.2);
+}
+
+.card-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient);
+  border-radius: 50%;
+  border: 3px solid var(--marigold);
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.management-card:hover .card-icon-wrapper {
+  transform: rotateY(360deg);
+  border-color: #00bcd4;
+  box-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
+}
+
+.card-icon-wrapper ion-icon {
+  font-size: 40px;
+  color: var(--marigold);
+  transition: var(--transition);
+}
+
+.management-card:hover .card-icon-wrapper ion-icon {
+  color: #00bcd4;
+}
+
+.management-card .card-title {
+  position: relative;
+  color: var(--white);
+  font-family: var(--ff-oxanium);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  margin-block-end: 15px;
+  z-index: 1;
+}
+
+.management-card .card-description {
+  position: relative;
+  color: var(--quick-silver);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-500);
+  line-height: 1.7;
+  margin-block-end: 25px;
+  z-index: 1;
+}
+
+.card-action-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background-color: var(--marigold);
+  color: var(--xiketic);
+  font-family: var(--ff-oxanium);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.card-action-btn:hover {
+  background-color: #00bcd4;
+  color: var(--white);
+  transform: translateX(5px);
+}
+
+.card-action-btn ion-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.card-action-btn:hover ion-icon {
+  transform: translateX(5px);
+}
+
+
+
+
+/*-----------------------------------*\
   #FEATURED PLAYERS
 \*-----------------------------------*/
 
@@ -962,6 +1108,28 @@ body {
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
   margin-block-end: 15px;
+}
+
+.player-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--quick-silver);
+  font-size: var(--fs-10);
+  font-weight: var(--fw-500);
+  margin-block-end: 12px;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.player-social ion-icon {
+  font-size: 18px;
+  color: #E1306C;
+}
+
+.player-social:hover {
+  color: #E1306C;
+  transform: translateX(3px);
 }
 
 .player-stats {
@@ -1469,6 +1637,17 @@ body {
 
 
   /**
+   * GAME MANAGEMENT
+   */
+
+  .game-management-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 35px;
+  }
+
+
+
+  /**
    * NEWSLETTER
    */
 
@@ -1739,6 +1918,30 @@ body {
 
 
   /**
+   * GAME MANAGEMENT
+   */
+
+  .game-management-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .management-card {
+    padding: 45px 35px;
+  }
+
+  .card-icon-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+
+  .card-icon-wrapper ion-icon {
+    font-size: 45px;
+  }
+
+
+
+  /**
    * NEWSLETTER
    */
 
@@ -1844,6 +2047,17 @@ body {
    */
 
   .player-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+
+
+  /**
+   * GAME MANAGEMENT
+   */
+
+  .game-management-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
   }
