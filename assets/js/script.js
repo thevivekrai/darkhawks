@@ -59,20 +59,31 @@ window.addEventListener("scroll", function () {
  */
 
 const backgroundAudio = document.querySelector("[data-bg-audio]");
+const audioToggle = document.querySelector("[data-audio-toggle]");
 
-if (backgroundAudio) {
-  const attemptAutoplay = () => {
-    backgroundAudio.play().catch(() => {});
+if (backgroundAudio && audioToggle) {
+  backgroundAudio.muted = true;
+
+  const showToggle = () => {
+    audioToggle.classList.add("active");
   };
 
-  const startAudio = () => {
-    attemptAutoplay();
-    window.removeEventListener("click", startAudio);
-    window.removeEventListener("touchstart", startAudio);
+  const hideToggle = () => {
+    audioToggle.classList.remove("active");
+  };
+
+  const attemptAutoplay = () => {
+    backgroundAudio.play().then(showToggle).catch(showToggle);
+  };
+
+  const unmuteAudio = () => {
+    backgroundAudio.muted = false;
+    backgroundAudio.play().catch(() => {});
+    hideToggle();
   };
 
   attemptAutoplay();
   window.addEventListener("load", attemptAutoplay);
-  window.addEventListener("click", startAudio, { once: true });
-  window.addEventListener("touchstart", startAudio, { once: true });
+  audioToggle.addEventListener("click", unmuteAudio);
+  audioToggle.addEventListener("touchstart", unmuteAudio, { passive: true });
 }
