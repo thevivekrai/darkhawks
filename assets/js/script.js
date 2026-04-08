@@ -61,12 +61,18 @@ window.addEventListener("scroll", function () {
 const backgroundAudio = document.querySelector("[data-bg-audio]");
 
 if (backgroundAudio) {
-  const startAudio = () => {
+  const attemptAutoplay = () => {
     backgroundAudio.play().catch(() => {});
+  };
+
+  const startAudio = () => {
+    attemptAutoplay();
     window.removeEventListener("click", startAudio);
     window.removeEventListener("touchstart", startAudio);
   };
 
+  attemptAutoplay();
+  window.addEventListener("load", attemptAutoplay);
   window.addEventListener("click", startAudio, { once: true });
   window.addEventListener("touchstart", startAudio, { once: true });
 }
